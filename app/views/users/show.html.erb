@@ -1,0 +1,14 @@
+<div class="banner">
+  <div class="user-show">
+    <div class="col-sm-12 col-xs-12">
+      <div class="settings">
+        <%=link_to edit_user_path do%>
+          <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+        <%end%>
+      </div>
+      <%= image_tag @user.gravatar_url(size: 180) %>
+      <h2 class="text-center"><%= @user.username %></h2>
+      <h4 class="text-center"><%= @user.email %></h4>
+    </div>
+  </div>
+</div>

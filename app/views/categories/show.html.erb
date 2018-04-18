@@ -1,0 +1,13 @@
+<div class="post-banner"></div>
+<div class="container">
+<div class="col-sm-11 col-xs-12 blog-content">
+  <h2 class="text-center">Posts under: <%= @category.category %></h2>
+
+  <%@category.posts.each do |post|%>
+  <div class="well">
+    <b class="text-center"><a href="/posts/<%=post.id%>"><%=post.title%></a></b>
+  </div>
+  <%end%>
+
+</div>
+</div>

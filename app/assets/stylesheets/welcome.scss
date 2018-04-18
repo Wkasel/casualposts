@@ -1,0 +1,52 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.banner{
+  position: relative;
+}
+#main_search_box {
+  margin-left: auto;
+  margin-right: auto;
+  input {
+    width: 50%;
+    height: 42px;
+    font-size: 24px;
+    padding:3px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.home_category_list {
+	list-style-type: none;
+	display: inline;
+	li {
+		display: inline;
+		padding: 10px;
+		margin: 0px;
+	}
+}
+
+.banner-container {
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  margin-left: -15rem;
+  margin-top: -15.5rem;
+  min-width: 40rem;
+  min-height: 33rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1)
+}
+
+
+.banner-text {
+  padding-top: 30%;
+  vertical-align: middle;
+  color: #5b89e5;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}

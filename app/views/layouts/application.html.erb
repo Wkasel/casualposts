@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Craigslist</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%> <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbawIZWb9AkZV3O6OyAZtgdKS-Y7ctxh8">
+    </script>
+  </head>
+
+  <body>
+    <%=render "layouts/navigation"%>
+    <div class="container-fluid">
+      <%if notice%>
+        <p class="notice"><%=notice%></p>
+      <%end%>
+      <%if alert%>
+        <p class="alert"><%=alert%></p>
+      <%end%>
+      <%= yield %>
+    </div>
+  </body>
+</html>

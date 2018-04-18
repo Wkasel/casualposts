@@ -1,0 +1,23 @@
+<div class="container" style="padding-top: 60px;">
+  <section>
+    <div>
+      <h1>San Francisco Bay</h1>
+    </div>
+    <div class="well">
+      <div id="main_search_box">
+        <form method="get" action="/posts">
+          <input type="text" name="search" id="main_search" />
+          <button>Search</button>
+        </form>
+      </div>
+    </div>
+  <section>
+    <div class="well">
+      <h4>Categories</h2>
+      <ul class="home_category_list">
+        <% @categories.each do |cat| %>
+        <li><a href="/categories/<%=cat.category%>"><%= cat.category %></a></li>
+        <% end %>
+    </div>
+  </section>
+</div>

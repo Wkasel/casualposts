@@ -1,0 +1,26 @@
+<div class="post-banner"></div>
+<div class="container">
+  <div class="post-show-container">
+  <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
+    <div id="post-show" class="col-xs-6">
+      <div id="map-container">
+        <div id="map-canvas"></div>
+      </div>
+    </div>
+    <div id="post-show-2" class="col-xs-6">
+      <h2 class="text-center"><%= @post.title %> <span> <%=@post.created_at.strftime('%b %d, %Y') %></span></h2>
+      <h3 class="text-center"><%=number_to_currency(@post.cost)%></h3>
+      <p class="text-center"><%= raw @post.body %></p>
+      <%= image_tag @post.image.url %>
+    </div>
+  </div>
+</div>
+</div>
+
+<%= javascript_tag do %>
+	latitude = '<%= j @post.latitude.to_s %>';
+	longitude = '<%= j @post.longitude.to_s %>';
+	title = '<%= j @post.title %>';
+	cost = '<%= j number_to_currency(@post.cost) %>';
+	address = '<%= j @post.address %>';
+<% end %>
