@@ -12,17 +12,17 @@ default: &default
 
 development:
   <<: *default
-  database: craigslist_development
+  database: casualposts_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: craigslist_test
+  database: casualposts_test
 
 production:
   <<: *default
-  database: craigslist_production
-  username: craigslist
-  password: <%= ENV['CRAIGSLIST_DATABASE_PASSWORD'] %>
+  database: casualposts_production
+  username: c@su@1p0$t$
+  password: <%= ENV['CASUALPOSTS_DATABASE_PASSWORD'] %>

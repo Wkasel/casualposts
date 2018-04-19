@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   private
     def set_current_region
-      # @current_region = Region.find_by_shortname!(request.subdomains.first)
+      if !request.subdomains.any?
+        @current_region = Region.find_by_shortname("sfbay")
+        redirect_to "#{request.protocol}sfbay.#{request.host}"
+      else
+        @current_region = Region.find_by_shortname(request.subdomains.first)
+      end    
     end
 end

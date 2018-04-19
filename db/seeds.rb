@@ -5,9 +5,6 @@ puts "Destroying all existing data..."
 User.destroy_all
 Category.destroy_all
 Post.destroy_all
-Region.destroy_all
-Subregion.destroy_all
-Neighborhood.destroy_all
 
 # DATAAAA
 categories = [ "w4w","w4ww","w4mw","w4t","w4m",
@@ -176,12 +173,12 @@ la_sub = [
 ]
 
 puts "creating a few regions"
-sfbay_region = Region.create({
+sfbay_region = Region.new({
   shortname:"sfbay",
   name: "San Francisco Bay Area",
   softlink: "sf"
   })
-la_region = Region.create({
+la_region = Region.new({
   shortname:"losangeles",
   name: "Los Angeles Area",
   softlink:"la"

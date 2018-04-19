@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418184454) do
+ActiveRecord::Schema.define(version: 20180418222741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20180418184454) do
     t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
+  create_table "neighborhoods", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subregion_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["subregion_id"], name: "index_neighborhoods_on_subregion_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -52,6 +60,22 @@ ActiveRecord::Schema.define(version: 20180418184454) do
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.string   "softlink"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subregions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region_id"], name: "index_subregions_on_region_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        limit: 50, null: false
@@ -62,4 +86,6 @@ ActiveRecord::Schema.define(version: 20180418184454) do
     t.index ["username"], name: "index_users_on_username", order: { username: :desc }, using: :btree
   end
 
+  add_foreign_key "neighborhoods", "subregions"
+  add_foreign_key "subregions", "regions"
 end
