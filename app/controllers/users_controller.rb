@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :show, :delete]
-
+# def default_url_options(options={})
+#   {:filter => 'no' }
+# end
 def new
   @user = User.new
 end

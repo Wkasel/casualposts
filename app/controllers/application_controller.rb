@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :set_current_region
+  before_action :set_current_region
   include UsersHelper
-
   private
     def set_current_region
       if !request.subdomains.any?
@@ -10,6 +9,6 @@ class ApplicationController < ActionController::Base
         redirect_to "#{request.protocol}sfbay.#{request.host}"
       else
         @current_region = Region.find_by_shortname(request.subdomains.first)
-      end    
+      end
     end
 end

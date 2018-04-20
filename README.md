@@ -27,3 +27,9 @@ tail -f log/development.log
 ```
 
 By default if no subdomain is provided, the app defaults to SFBay Area
+
+any known errors:
+If you have any errors with FriendlyId in Dev mode, try stopping spring
+```
+spring stop
+```

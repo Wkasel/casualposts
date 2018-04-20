@@ -1,36 +1,37 @@
 <div class="post-banner"></div>
 <div class="container">
   <h1> All posts</h1>
-  <%= form_tag posts_path, :method => 'get', class: 'navbar-form navbar-left' do%>
-    <div class='form-group'>
-      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
-    </div>
-    <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
-  <% end %>
+  <secton>
+    <%= form_tag posts_path, :method => 'get', class: 'navbar-form navbar-left' do%>
+      <div class='form-group'>
+        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+      </div>
+      <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+    <% end %>
+  </section>
   <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
     <% @posts.each do |post| %>
     <div class="col-xs-6">
       <div class="text-center">
-        <h2><%= link_to post_path(post) do%>
+        <h2><%= link_to post_path(:id =>post.id) do%>
           <%= post.title %>
           <%end%>
         </h2>
         <h5><%= post.created_at.strftime('%b %d, %Y') %></h5>
-        <h3><%=number_to_currency(post.cost)%></h3>
         <%= image_tag post.image.url(:medium) %>
       </div>
       </div>
       <div class="col-xs-6">
         <div class="text-center">
-          <p class=post-body><%= raw(post.body).truncate(358) %></p>
+          <p class=post-body><%= raw(post.body).truncate(150) %></p>
         </div>
         <br>
       </div>
       <% if login?%>
       <div class="text-center">
-        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-default"%>
+        <%= link_to 'Edit', edit_post_path(:id =>post.id), class: "btn btn-default"%>
         <br><br>
-        <%= link_to "Delete", post_path(post), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"}%>
+        <%= link_to "Delete", post_path(:id =>post.id), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"}%>
       </div>
       <%end%>
       <br>

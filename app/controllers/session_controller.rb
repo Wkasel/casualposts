@@ -8,7 +8,7 @@ class SessionController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Successfully logged in!"
-      redirect_to posts_path
+      redirect_to posts_path(:filters => "casual-encounters")
     else
       flash[:alert] = "Invalid login. Please try again"
       render 'login'
@@ -17,6 +17,6 @@ class SessionController < ApplicationController
 
   def logout
     session.clear
-    redirect_to posts_path
+    redirect_to posts_path(:filters => "casual-encounters")
   end
 end

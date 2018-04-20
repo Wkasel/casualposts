@@ -1,12 +1,23 @@
 <div class="container" style="padding-top: 60px;">
   <div class="page-header">
     <h1><%= @current_region.name %></h1>
-    <p class="lead">Browse casual encounters from people nearby.</p>
+    <% if params['filters'] %>
+      <h2><%= Subregion.find_by_shortname(params['filters']).name %></h2>
+    <% end %>
+    <!-- <p class="lead">Browse casual encounters from people nearby.</p> -->
     <ul class="home_category_list">
       <% @current_region.subregions.each do |subregion| %>
-      <li><a href="/<%=subregion.shortname%>"><%= subregion.name %></a></li>
+      <li><a href="/s/<%=subregion.shortname%>"><%= subregion.name %></a></li>
       <% end %>
     </ul>
+    <div class="well">
+      <h4>Categories</h2>
+      <ul class="home_category_list">
+        <% @categories.each do |cat| %>
+        <li><a href="/search/<%=cat.name%>/posts"><%= cat.name %></a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
   <section>
     <div class="row">
@@ -30,14 +41,7 @@
       </div>
       <div class="col-md-4">
         <div class="span4">
-          <div class="well">
-            <h4>Categories</h2>
-            <ul class="home_category_list">
-              <% @categories.each do |cat| %>
-              <li><a href="/categories/<%=cat.category%>"><%= cat.category %></a></li>
-              <% end %>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>

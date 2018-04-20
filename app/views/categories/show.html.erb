@@ -3,6 +3,12 @@
 <div class="col-sm-11 col-xs-12 blog-content">
   <h2 class="text-center">Posts under: <%= @category.category %></h2>
 
+  <%= form_tag posts_path, :method => 'get', class: 'navbar-form navbar-left' do%>
+    <div class='form-group'>
+      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+  <% end %>
   <%@category.posts.each do |post|%>
   <div class="well">
     <b class="text-center"><a href="/posts/<%=post.id%>"><%=post.title%></a></b>

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :find_post, only: [:edit, :update, :show, :delete]
   before_action :authenticate, only: [:edit, :update, :destroy]
+  
 
   def index
     @posts = Post.search(params[:search])
@@ -47,6 +48,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @posts = Post.friendly.find(params[:id])
   end
 
   def destroy
@@ -58,25 +60,25 @@ class PostsController < ApplicationController
     end
   end
 
-  # def self.search(search)
-  #   if search
-  #     find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-  #   else
-  #     find(:all)
-  #   end
-  # end
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 
   private
     def post_params
-      params.require(:post).permit(:title, :body, :category_id, :image, :longitude, :latitude, :address)
+      params.require(:post).permit(:title, :body, :category_id, :image, :longitude, :latitude, :address, :region_id, :subregion_id, :neighborhood_id)
     end
 
     def find_post
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def authenticate
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
       current_user.id == @post.user_id
     end
 end
