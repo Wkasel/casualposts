@@ -1,6 +1,6 @@
 namespace :data do
 
-  task :wipe_region_data do
+  task :wipe_region_data => :environment do
     Neighborhood.destroy_all
     Subregion.destroy_all
     Region.destroy_all
