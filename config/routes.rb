@@ -42,6 +42,11 @@ Rails.application.routes.draw do
     root 'welcome#subcategory'
   end
 
+  scope 'a/*search', :constraints => Constraints::ParseSearchConstraint.new do
+    resources :posts, only: [:index]
+    root 'posts#index'
+  end
+
     # scope '/s/*filters', :constraints => Constraints::ParseFilterURLConstraint.new do
     #   resources :posts do
     #   end

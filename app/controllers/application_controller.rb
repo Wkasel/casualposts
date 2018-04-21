@@ -7,10 +7,13 @@ class ApplicationController < ActionController::Base
 
   def build_url(link)
     url = []
+    # http://sfbay.casualposts.test/s/sfc/casual-encounters/w4m/posts
     if session[:subregion]
-      url << "/#{session[:subregion].shortname}"
+      url << "/s/#{session[:subregion].shortname}"
     elsif session[:category]
-      url << "/#{session[:category].titlize}"
+      url << "/c/#{session[:category].titleize}"
+    else
+      url << 'a'
     end
     url << "/#{link}"
     return url.join("")
@@ -37,6 +40,8 @@ class ApplicationController < ActionController::Base
       if params[:subregion]
         session[:subregion] = Subregion.find_by_shortname(params[:subregion])
         scope << session[:subregion]
+      else
+        session.delete(:subregion)
       end
 
       logger.info "CAT #{params[:category]}"
@@ -45,6 +50,8 @@ class ApplicationController < ActionController::Base
       if params[:category]
         session[:category] = Category.find_by_shortname(params[:category])
         scope << session[:category]
+      else
+        session.delete(:category)
       end
 
       logger.info scope
