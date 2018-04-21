@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       if !request.subdomains.any?
         session[:region] = Region.find_by_shortname("sfbay")
         scope << {:region => session[:region]}
-        redirect_to "#{request.protocol}#{session[:region].name}.#{request.host}"
+        redirect_to "#{request.protocol}#{session[:region].shortname}.#{request.host}"
       else
         session[:region] = Region.find_by_shortname(request.subdomains.first)
         scope << {:region => session[:region]}
