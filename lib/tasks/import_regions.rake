@@ -17,12 +17,12 @@ namespace :data do
 
 
     json.each do |a|
-      # region = Region.new(
-      #             :name       =>     a['name'].capitalize,
-      #             :shortname  =>     a['shortcode'],
-      #             :state      =>     a['state']
-      #             )
-      region = Region.find_by_shortname(a['shortcode'])
+      region = Region.new(
+                  :name       =>     a['name'].capitalize,
+                  :shortname  =>     a['shortcode'],
+                  :state      =>     a['state']
+                  )
+      # region = Region.find_by_shortname(a['shortcode'])
       # my_logger.info "region: #{a['name'].capitalize} -- #{a['shortcode']} -- #{a['state']}"
       a['subregions'].each do |subregion|
         subregion_obj = Subregion.new(
