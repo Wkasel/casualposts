@@ -4,7 +4,11 @@
   <secton>
     <%= form_tag posts_path, :method => 'get', class: 'navbar-form navbar-left' do%>
       <div class='form-group'>
-        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+        <% if params[:search] == "all" %>
+          <%= text_field_tag :search, '',class: 'form-control', placeholder: 'Search' %>
+        <% else %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+        <% end %>
       </div>
       <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
     <% end %>

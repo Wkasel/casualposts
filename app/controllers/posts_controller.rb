@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :find_post, only: [:edit, :update, :show, :delete]
   before_action :authenticate, only: [:edit, :update, :destroy]
-  
+
 
   def index
     @posts = Post.search(params[:search])
@@ -61,9 +61,10 @@ class PostsController < ApplicationController
   end
 
   def self.search(search)
-    if search
+    if search && search != 'all'
       find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
     else
+      params[:search] = nil
       find(:all)
     end
   end

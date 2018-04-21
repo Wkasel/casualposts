@@ -1,37 +1,65 @@
-<div class="container" style="padding-top: 60px;">
+<div class="container">
   <div class="page-header">
-    <h1><%= @current_region.name %></h1>
-    <% if params['filters'] %>
-      <h2><%= Subregion.find_by_shortname(params['filters']).name %></h2>
-    <% end %>
-    <!-- <p class="lead">Browse casual encounters from people nearby.</p> -->
-    <ul class="home_category_list">
-      <% @current_region.subregions.each do |subregion| %>
-      <li><a href="/s/<%=subregion.shortname%>"><%= subregion.name %></a></li>
+    <h1><%= session[:region].name %></h1>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+      <% if session[:subregion] %>
+        <h4><%= session[:subregion].name %></h4><br />
       <% end %>
-    </ul>
-    <div class="well">
-      <h4>Categories</h2>
-      <ul class="home_category_list">
+      <% session[:region].subregions.each do |subregion| %>
+      <span style="padding:5px;"><a href="/s/<%=subregion.shortname%>" class="underline"><%= subregion.name %></a></span>
+      <% end %>
+      </div>
+    </div>
+
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
         <% @categories.each do |cat| %>
-        <li><a href="/search/<%=cat.name%>/posts"><%= cat.name %></a></li>
+        <li role="presentation"><a href="c/<%= cat.titleize %>"><%= cat.name %></a></li>
         <% end %>
       </ul>
+
+      <div></div>
+
     </div>
+
   </div>
   <section>
     <div class="row">
-      <div class="col-md-12">
-        <div class="well">
-          <div id="main_search_box">
+        <div class="col-md-2 well">
+          <h5>Other Cities</h5>
+          <ul class="other_cities">
+          <% session[:region].nearby_regions.each do |region| %>
+            <li><a href="http://<%= region.shortname %>.casualposts.test" class="underline"><%= region.name %></a></li>
+          <% end %>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <div class="well">
             <form method="get" action="/posts">
-              <input type="text" name="search" id="main_search" />
-              <button>Search</button>
-            </form>
+		          <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Category</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <% @categories.each do |cat| %>
+                      <li><a href=""><%= cat.name %></a></li>
+                      <% end %>
+
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" style="height:42px" class="main_search_box form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+            <?
           </div>
         </div>
-      </div>
-    </div>
+	   </div>
   </section>
   <section>
     <div class="row">

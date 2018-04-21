@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <secton>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <p>By clicking the link below you confirm that you are 18 or older and understand personals may include adult content.</p>
+      <% if session[:category].subcategories.any? %>
+          <h4><a href="#" class="underline">
+            <%= session[:category].name %>
+          </a> >>> </h4>
+          <div class="">
+            <% session[:category].subcategories.each do |subcat| %>
+              <a href="#" class="underline"><span class="subcategories" style="padding:10px; margin: 10px;"><%= subcat.name %></span></a>
+            <% end %>
+          </div>
+
+        <% end %>
+    </section>
+  </div>
+</div>

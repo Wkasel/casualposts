@@ -2,7 +2,7 @@ module Constraints
   class ParseFilterURLConstraint
     def matches?(request)
 
-
+      # session[:region] = 'SANNNN FRANNNN'
       # => This is all going to be deleted - was scratch work >>
 
       # redirect("/s/123123")
@@ -17,6 +17,8 @@ module Constraints
       logger.level = :debug
       logger.debug request.path.inspect
       logger.info request.subdomain
+      logger.info "Parse Filter URL Constraint"
+      # logger.info "REGION ---> #{session[:region]}"
       #
       #
       #

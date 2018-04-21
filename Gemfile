@@ -66,3 +66,4 @@ gem "paperclip"
 gem 'figaro'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.1.0'
+gem "rails-settings-cached"

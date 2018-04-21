@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420075315) do
+ActiveRecord::Schema.define(version: 20180421053354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,26 @@ ActiveRecord::Schema.define(version: 20180420075315) do
     t.string   "softlink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "state"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
   end
 
   create_table "subregions", force: :cascade do |t|
@@ -108,5 +128,6 @@ ActiveRecord::Schema.define(version: 20180420075315) do
   end
 
   add_foreign_key "neighborhoods", "subregions"
+  add_foreign_key "subcategories", "categories"
   add_foreign_key "subregions", "regions"
 end
