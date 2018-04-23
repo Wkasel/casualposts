@@ -42,7 +42,7 @@ namespace :data do
     end
 
 
-    my_logger.info "Ending at #{Time.now}"
+    # my_logger.info "Ending at #{Time.now}"
 
   end
 

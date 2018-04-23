@@ -60,10 +60,15 @@ gem 'simple_form', '~> 3.2'
 gem 'bootstrap-sass', '~>3.3'
 gem 'font-awesome-sass'
 gem 'pry'
-gem 'ckeditor', '~>4.1'
+gem 'ckeditor', '~>4.1' #need to bring in github url
 gem 'gravtastic'
 gem "paperclip"
 gem 'figaro'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.1.0'
 gem "rails-settings-cached"
+
+
+gem 'sendgrid-ruby'
+gem 'griddler'
+gem 'griddler-sendgrid'

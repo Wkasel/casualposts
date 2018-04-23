@@ -1,7 +1,6 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
-  foo: "Foo"
-  bar: 123
+  sendgrid_key: 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
 
 development:
   <<: *defaults

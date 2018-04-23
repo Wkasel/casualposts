@@ -25,7 +25,7 @@
   <strong>Category:</strong><br>
   <select name="post[category_id]">
     <% Category.all.each do |category| %>
-        <option value="<%= category.id %>"><%= category.category %></option>
+        <option value="<%= category.id %>"><%= category.name %></option>
     <% end %>
   </select>
   <%= f.input :address%>

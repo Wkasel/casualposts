@@ -13,11 +13,11 @@ module Constraints
       #                        (filter)              [search][term]
       # sfbay.casualposts.com/s/sfc/casual-encounters/search/w4m/posts
       # sfbay.casualposts.com/s/casual-encounters/posts/looking-for-love/00231.html
-      logger = Rails.logger
-      logger.level = :debug
-      logger.debug request.path.inspect
-      logger.info request.subdomain
-      logger.info "Parse Filter URL Constraint"
+      # logger = Rails.logger
+      # logger.level = :debug
+      # logger.debug request.path.inspect
+      # logger.info request.subdomain
+      # logger.info "Parse Filter URL Constraint"
       # logger.info "REGION ---> #{session[:region]}"
       #
       #

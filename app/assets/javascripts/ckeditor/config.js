@@ -8,6 +8,11 @@ CKEDITOR.editorConfig = function(config) {
   config.filebrowserImageUploadUrl = "/ckeditor/pictures";
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
+  // config.toolbar_mini = [
+  //   ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
+  // ];
+  // config.toolbar = "mini";
+
   config.toolbar_Pure = [
     '/', {
       name: 'basicstyles',
