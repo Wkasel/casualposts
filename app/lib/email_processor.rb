@@ -31,7 +31,7 @@ class EmailProcessor
               "email": "william@casualposts.com"
             }
           ],
-          "subject": "Sending with SendGrid is Fun"
+          "subject": "Reply For Post"
         }
       ],
       "from": {
@@ -44,7 +44,11 @@ class EmailProcessor
         }
       ]
     }')
-    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
+    # curl -X "POST" "https://api.sendgrid.com/v3/mail/send" -H "Authorization: Bearer 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" -H "Content-Type: application/json" -d '{ "personalizations": [ { "to": [ { "email": "william@casualposts.com" } ], "subject": "Sending with SendGrid is Fun" } ], "from": { "email": "no-reply@reply.casualposts.com" }, "content": [ { "type": "text/plain", "value": "and easy to do anywhere, even with Ruby" } ] }'
+
+    sg = SendGrid::API.new(api_key: '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')
+    # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._("send").post(request_body: data)
     puts response.status_code
     puts response.body
