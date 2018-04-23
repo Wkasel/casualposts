@@ -1,4 +1,7 @@
 class EmailProcessor
+  require 'sendgrid-ruby'
+  include SendGrid
+
   def initialize(email)
     @email = email
   end
@@ -6,15 +9,46 @@ class EmailProcessor
   def process
     Rails.logger.info "RECEVIED EMAIL"
     Rails.logger.debug @email
-    # all of your application-specific code here - creating models,
-    # processing reports, etc
+    # from = Email.new(email: @email)
+    # to = Email.new(email: 'william@casualposts.com')
+    # subject = 'Sending with SendGrid is Fun'
+    # content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+    # mail = Mail.new(from, subject, to, content)
+    #
+    # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    # response = sg.client.mail._('send').post(request_body: mail.to_json)
+    # puts response.status_code
+    # puts response.body
+    # puts response.parsed_body
+    # puts response.headers
 
-    # here's an example of model creation
 
-    # user = User.find_by_email(@email.from[:email])
-    # user.posts.create!(
-    #   subject: @email.subject,
-    #   body: @email.body
-    # )
+    data = JSON.parse('{
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": "william@casualposts.com"
+            }
+          ],
+          "subject": "Sending with SendGrid is Fun"
+        }
+      ],
+      "from": {
+        "email": "no-reply@reply.casualposts.com"
+      },
+      "content": [
+        {
+          "type": "text/plain",
+          "value": "and easy to do anywhere, even with Ruby"
+        }
+      ]
+    }')
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    response = sg.client.mail._("send").post(request_body: data)
+    puts response.status_code
+    puts response.body
+    puts response.parsed_body
+    puts response.headers
   end
 end
