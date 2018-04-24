@@ -30,7 +30,7 @@ class EmailProcessor
     post_body = "hot stuff"
 
 
-    data = {
+    data2 = {
       :personalizations => [
         {
           :to => [
@@ -66,7 +66,7 @@ class EmailProcessor
 
     sg = SendGrid::API.new(api_key: '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')
     # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    response = sg.client.mail._("send").post(request_body: data.to_json)
+    response = sg.client.mail._("send").post(request_body: JSON.parse(data.to_json))
     puts response.status_code
     puts response.body
     puts response.parsed_body
