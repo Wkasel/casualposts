@@ -29,7 +29,7 @@ class EmailProcessor
     attachments = []
     post_body = "hot stuff"
 
-    
+
     data = {
       :personalizations => [
         {
@@ -52,7 +52,7 @@ class EmailProcessor
           :html => footer_html
         }
       },
-      :attachments => attachments,
+      # :attachments => attachments,
       :content => [
         {
           :type => "text/plain",
