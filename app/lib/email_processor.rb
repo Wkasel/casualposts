@@ -2,6 +2,7 @@ class EmailProcessor
   require 'sendgrid-ruby'
   include SendGrid
 
+
   def initialize(email)
     @email = email
   end
@@ -21,31 +22,67 @@ class EmailProcessor
     # puts response.body
     # puts response.parsed_body
     # puts response.headers
+    post_id = 1
+    post_reply_to = "post-123-123-123@reply.casualposts.com"
+    post_from_name = "Johnny Rocket"
+    footer_html = "<b>TEST FOOTER</b>"
+    attachments = []
+    post_body = "hot stuff"
 
-
-    data = JSON.parse('{
-      "personalizations": [
+    
+    data = {
+      :personalizations => [
         {
-          "to": [
-            {
-              "email": "william@casualposts.com"
-            }
+          :to => [
+            {:email => 'william@casualposts.com'}
           ],
-          "subject": "Reply For Post"
+          :subject => "Reply For Post #{post_id}"
         }
       ],
-      "from": {
-        "email": "no-reply@reply.casualposts.com"
+      :from => {
+        :email => "no-reply@reply.casualposts.com"
       },
-      "content": [
+      :reply_to => {
+        :email => post_reply_to,
+        :name => post_from_name
+      },
+      :mail_settings => {
+        :footer => {
+          :enable => true,
+          :html => footer_html
+        }
+      },
+      :attachments => attachments,
+      :content => [
         {
-          "type": "text/plain",
-          "value": "and easy to do anywhere, even with Ruby"
+          :type => "text/plain",
+          :value => post_body
         }
       ]
-    }')
+    }
+    # data = JSON.parse('{
+    #   "personalizations": [
+    #     {
+    #       "to": [
+    #         {
+    #           "email": "william@casualposts.com"
+    #         }
+    #       ],
+    #       "subject": "Reply For Post"
+    #     }
+    #   ],
+    #   "from": {
+    #     "email": "no-reply@reply.casualposts.com"
+    #   },
+    #   "content": [
+    #     {
+    #       "type": "text/plain",
+    #       "value": "and easy to do anywhere, even with Ruby"
+    #     }
+    #   ]
+    # }')
 
-    # curl -X "POST" "https://api.sendgrid.com/v3/mail/send" -H "Authorization: Bearer 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" -H "Content-Type: application/json" -d '{ "personalizations": [ { "to": [ { "email": "william@casualposts.com" } ], "subject": "Sending with SendGrid is Fun" } ], "from": { "email": "no-reply@reply.casualposts.com" }, "content": [ { "type": "text/plain", "value": "and easy to do anywhere, even with Ruby" } ] }'
+
 
     sg = SendGrid::API.new(api_key: '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')
     # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
