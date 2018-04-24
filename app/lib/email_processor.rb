@@ -30,7 +30,7 @@ class EmailProcessor
     post_body = "hot stuff"
 
 
-    data2 = {
+    data = {
       :personalizations => [
         {
           :to => [
