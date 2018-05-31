@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     scope '(c/:category)', :constraints => Constraints::ValidateCategoryConstraint.new do
       scope '(search/:search)', :constraints => Constraints::ParseSearchConstraint.new do
         resources :posts
+        get '', to: redirect('/posts')
       end
       root 'welcome#subcategory'
     end

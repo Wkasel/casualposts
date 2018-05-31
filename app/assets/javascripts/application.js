@@ -15,3 +15,14 @@
 //= require bootstrap-sprockets
 //= require ckeditor/init
 //= require_tree .
+
+
+$(function() {
+  $('#search_form').click(function() {
+    // console.log("value", $("#search_query_input").val());
+    new_url = window.location.href.split('/').slice(0,-2)
+    new_url.push($("#search_query_input").val().split(" ").join("+").toLowerCase())
+    new_url.push('posts')
+    window.location = new_url.join('/')
+  })
+});
