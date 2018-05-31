@@ -15,7 +15,7 @@
           <div class="">
             <% session[:category].subcategories.each do |subcat| %>
 
-              <a href="<%= build_url("#{subcat.name}/posts") %>" class="underline"><span class="subcategories" style="padding:10px; margin: 10px;"><%= subcat.name %></span></a>
+              <a href="<%= build_url("search/#{subcat.name}/posts") %>" class="underline"><span class="subcategories" style="padding:10px; margin: 10px;"><%= subcat.name %></span></a>
             <% end %>
           </div>
 

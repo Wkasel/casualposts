@@ -2,16 +2,16 @@
 <div class="container">
   <h1> All posts</h1>
   <secton>
-    <%= form_tag posts_path, :method => 'get', class: 'navbar-form navbar-left' do%>
+    <!-- <%= form_tag form_action_url, :name => nil,:enforce_utf8 => false, :method => 'get', class: 'navbar-form navbar-left' do%> -->
       <div class='form-group'>
         <% if params[:search] == "all" %>
-          <%= text_field_tag :search, '',class: 'form-control', placeholder: 'Search' %>
+          <%= text_field_tag 'search_query_input', '',class: 'form-control', placeholder: 'Search' %>
         <% else %>
-          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+          <%= text_field_tag 'search_query_input', params[:search], class: 'form-control', placeholder: 'Search' %>
         <% end %>
       </div>
-      <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
-    <% end %>
+      <%= submit_tag "Search", :id => "search_form", :name => nil, class: 'btn btn-default' %>
+    <!-- <% end %> -->
   </section>
   <div class="col-sm-10 col-sm-offset-1 col-xs-12 blog-content">
     <% @posts.each do |post| %>
