@@ -9,7 +9,7 @@ module Constraints
 
       # @region = request.subdomain
       # @subregion = request['filter']
-      # [http|https]://[Region].casualposts.[com|test|dev]/s/[Subregion]/[Category]/search/[search-term-hyphenated]/posts/[post-slug-hyphinated](/{id}.html)
+      # [http|https]://[Region].casualposts.[com|test|dev]/s/[Subregion]/c/[Category]/search/[search-term-hyphenated]/posts/[post-slug-hyphinated](/{id}.html)
       #                        (filter)              [search][term]
       # sfbay.casualposts.com/s/sfc/casual-encounters/search/w4m/posts
       # sfbay.casualposts.com/s/casual-encounters/posts/looking-for-love/00231.html
