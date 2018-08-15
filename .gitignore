@@ -50,3 +50,6 @@ bower.json
 # Ignore node_modules
 node_modules/
 sendgrid.env
+
+# Ignore application configuration
+/config/application.yml
